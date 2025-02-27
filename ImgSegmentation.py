@@ -28,6 +28,14 @@ labels = labels.flatten()
 segmented_image = centers[labels]
 segmented_image = segmented_image.reshape(imageLAB.shape)
 
+# Saving segmented image to BGR format
+segmented_image_bgr = cv2.cvtColor(segmented_image, cv2.COLOR_LAB2BGR)
+output_filename = "segmented.jpg"
+output_path = os.path.join(script_dir, output_filename)
+cv2.imwrite(output_path, segmented_image_bgr)
+print(f"Segmented image saved as {output_path}")
+
+
 # Display the original and segmented image
 plt.subplot(211), plt.imshow(imageRGB)
 plt.title('Original Image'), plt.xticks([]), plt.yticks([])
